@@ -12,12 +12,11 @@ class Space(
 )
 
 private const val EMPTY_SPACE = "0"
+private const val MODE_HORIZONTAL   = 0
+private const val MODE_DIAGONAL     = 1
+private const val MODE_VERTICAL     = 2
 
-private const val MODE_VERTICAL = 2
-private const val MODE_HORIZONTAL = 0
-private const val MODE_DIAGONAL = 1
 private lateinit var arr: Array<Array<Space>?>
-
 private lateinit var dpMap: Array<Array<Array<Long?>>>
 
 fun main() {
@@ -53,37 +52,52 @@ fun main() {
 }
 
 fun move(row: Int, col: Int, mode: Int): Long {
-    //check posibility
+    // out.
     if (row >= arr.size || col >= arr[row]!!.size) return 0
+    val currentSpace = arr[row]!![col]
+
+    // blocked
+    if(isBlockedSpace(currentSpace,mode)) return 0
+
+    // reached destiny
+    if (row == arr.size - 1 && col == arr[row]!!.size - 1) return 1
+
+    // use memorized value
     if (dpMap[row][col][mode] != null) return dpMap[row][col][mode]!!
 
-    val currentSpace = arr[row]!![col]
+    // sum values
     var countSum: Long = 0
-
     when (mode) {
         MODE_DIAGONAL -> {
-            if (currentSpace.status != EMPTY_SPACE) return 0
-            if (currentSpace.up?.status != EMPTY_SPACE) return 0
-            if (currentSpace.left?.status != EMPTY_SPACE) return 0
-            if (row == arr.size - 1 && col == arr[row]!!.size - 1) return 1
-            countSum += move(row + 1, col, MODE_VERTICAL)
-            countSum += move(row, col + 1, MODE_HORIZONTAL)
-            countSum += move(row + 1, col + 1, MODE_DIAGONAL)
+            countSum += moveHorizontal(row, col)
+            countSum += moveVertical(row, col)
         }
         MODE_VERTICAL -> {
-            if (currentSpace.status != EMPTY_SPACE) return 0
-            if (row == arr.size - 1 && col == arr[row]!!.size - 1) return 1
-            countSum += move(row + 1, col, MODE_VERTICAL)
-            countSum += move(row + 1, col + 1, MODE_DIAGONAL)
+            countSum += moveVertical(row, col)
         }
         MODE_HORIZONTAL -> {
-            if (currentSpace.status != EMPTY_SPACE) return 0
-            if (row == arr.size - 1 && col == arr[row]!!.size - 1) return 1
-            countSum += move(row, col + 1, MODE_HORIZONTAL)
-            countSum += move(row + 1, col + 1, MODE_DIAGONAL)
+            countSum += moveHorizontal(row, col)
         }
     }
+    countSum += moveDiagonal(row, col)
 
+    // memorize and return
     dpMap[row][col][mode] = countSum
     return countSum
 }
+
+fun isBlockedSpace(space: Space, mode: Int): Boolean {
+    return when (mode) {
+        MODE_DIAGONAL ->
+            space.status != EMPTY_SPACE || space.up?.status != EMPTY_SPACE || space.left?.status != EMPTY_SPACE
+        MODE_VERTICAL ->
+            space.status != EMPTY_SPACE
+        MODE_HORIZONTAL ->
+            space.status != EMPTY_SPACE
+        else -> true
+    }
+}
+
+fun moveHorizontal(row: Int, col: Int) = move(row, col + 1, MODE_HORIZONTAL)
+fun moveVertical(row: Int, col: Int) = move(row + 1, col, MODE_VERTICAL)
+fun moveDiagonal(row: Int, col: Int) = move(row + 1, col + 1, MODE_DIAGONAL)
