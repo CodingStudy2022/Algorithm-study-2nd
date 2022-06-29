@@ -5,7 +5,7 @@ X| 골드 III<br>BOJ1005<br><br>716ms | 골드 IV<br>BOJ2458<br><br>2008ms | 골
 
 26일 |              27일               | 28일 | 29일  | 30일
 :-----:|:------------------------------:|:-----:|:-----:|:-----:
-골드 IV<br>BOJ17069<br><br>112ms  | 실버 IV<br>BOJ16439<br><br>116ms  |    실버 IV<br>BOJ16922<br><br>96ms  ||
+골드 IV<br>BOJ17069<br><br>112ms  | 실버 IV<br>BOJ16439<br><br>116ms  |    실버 IV<br>BOJ16922<br><br>96ms  | 골드 V<br>BOJ16927<br><br>784ms |
 - 21일 -> 다음에 다시 풀어볼 것! (시간 턱걸이)
 
 
