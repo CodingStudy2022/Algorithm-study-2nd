@@ -13,7 +13,7 @@ class Queue {
     }
 }
 
-val arr: MutableList<MutableList<Pair<Int, Boolean>>> = mutableListOf()
+internal val arr_: MutableList<MutableList<Pair<Int, Boolean>>> = mutableListOf()
 var width: Int = -1
 var height: Int = -1
 fun main() {
@@ -25,13 +25,13 @@ fun main() {
 
     repeat(height) { r ->
         tokenizer = StringTokenizer(reader.readLine())
-        arr.add(mutableListOf())
+        arr_.add(mutableListOf())
         repeat(width) {
-            arr[r].add(Pair(tokenizer.nextToken().toInt(), false))
+            arr_[r].add(Pair(tokenizer.nextToken().toInt(), false))
         }
     }
 
-    rotate(arr, count, 0, width - 1, 0, height - 1)
+    rotate(arr_, count, 0, width - 1, 0, height - 1)
     printArr()
 }
 
@@ -39,7 +39,7 @@ fun printArr() {
     val builder = StringBuilder()
     repeat(height) { r ->
         repeat(width) { c ->
-            builder.append(arr[r][c].first).append(" ")
+            builder.append(arr_[r][c].first).append(" ")
         }
         builder.append("\n")
     }
