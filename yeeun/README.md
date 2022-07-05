@@ -15,7 +15,7 @@ X| 골드 III<br>BOJ1005<br><br>716ms | 골드 IV<br>BOJ2458<br><br>2008ms | 골
 
 03일 | 04일 | 05일 |06일 |07일 |08일 |09일 
 :-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:
-| 실버 I<br>BOJ2156<br><br>148ms | 실버 I<br>BOJ2138<br><br>276ms
+| 실버 I<br>BOJ2156<br><br>148ms | 실버 I<br>BOJ2138<br><br>276ms| 골드 IV<br>ㅠㅒㅓ2374<br><br>124ms
 
 
 [//]: # (<img src="https://img.shields.io/badge/골드III-ffd700?style=flat-square&logo=GIT&logoColor=black"/> )
